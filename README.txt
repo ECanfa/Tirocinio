@@ -1,0 +1,1 @@
+Per generare i dati utilizzati nello script ARXsim.py per training e validazione del sistema massa-molla-smorzatore tramite modello ARX, è necessario eseguire il file sim.py, che produce il file simulazione.csv e validazione.csv, dal quale vengono poi prelevati i dati.
