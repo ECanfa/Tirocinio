@@ -13,7 +13,6 @@ from sysidentpy.residues.residues_correlation import (
     compute_cross_correlation,
 )
 
-#Caricamento dei dati
 
 data = np.loadtxt("simulazione.csv", delimiter=",", skiprows=1)
 
@@ -27,15 +26,16 @@ y = x1
 y = y.reshape(-1, 1)
 u = u.reshape(-1, 1)
 
+
+
 #Parametri del modello
 
 model = FROLS(
-    order_selection = True,
+    order_selection=True,
     info_criteria="aic",
-    n_info_values= 5,
-    n_terms = 3,
-    ylag=2,       
-    xlag=2, 
+    n_info_values=5,
+    ylag=2,
+    xlag=2,
     estimator = LeastSquares(),
     basis_function=Polynomial(degree=1),
 )
@@ -59,14 +59,17 @@ print(r)
 # "Validazione" del sistema con dati generati con input differente (randomico)
 
 validazione = np.loadtxt("validazione.csv", delimiter=",",skiprows=1)
+
 tc = validazione[:,0]
 xc2 = validazione[:,2]
 xc1 = validazione[:, 1]
 uc = validazione[:,3]
 
 yc = xc1
+
 uc = uc.reshape(-1,1)
 yc = yc.reshape(-1,1)
+
 
 yhat = model.predict(X=uc, y=yc[:model.max_lag])
 

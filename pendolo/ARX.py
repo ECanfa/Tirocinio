@@ -33,6 +33,7 @@ model = FROLS(
     info_criteria="aic",
     ylag=2,      
     xlag=2,
+    n_terms= 4co,
     estimator = estimator,  
     order_selection = True,
     basis_function=Polynomial(degree=1),
@@ -41,6 +42,12 @@ model = FROLS(
 #Stima dei parametri
 
 model.fit(X=u, y=y) 
+
+#per scegliere n_terms
+xaxis = np.arange(1, model.n_info_values + 1)
+plt.plot(xaxis, model.info_values)
+plt.xlabel("n_terms")
+plt.ylabel("Information Criteria")
 
 r = pd.DataFrame(    
     results(        

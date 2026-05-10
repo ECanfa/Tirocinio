@@ -31,12 +31,11 @@ estimator = LeastSquares()
 model = FROLS(
     order_selection = True,
     info_criteria="aic",
-    n_info_values= 10,
-    n_terms = 4,
+    n_info_values= 30,
     ylag=2,      
     xlag=2,
     estimator = estimator,  
-    basis_function=Polynomial(degree=3),
+    basis_function=Polynomial(degree=5),
 )
 
 #Stima dei parametri
@@ -66,6 +65,8 @@ xc1 = validazione[:, 1]
 uc = validazione[:,3]
 
 yc = xc1
+
+
 uc = uc.reshape(-1,1)
 yc = yc.reshape(-1,1)
 
